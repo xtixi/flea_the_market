@@ -36,6 +36,11 @@ MonoBehaviour:
     - Sirenix.OdinInspector.CompatibilityLayer
     - ToonyColorsPro.Runtime
     - KinoBloom.Runtime
+    - LeanTouchPlus
+    - LeanTouch
+    - CW.Common
+    - LeanCommon
+    - LeanCommonPlus
     - ToonyColorsPro.Editor
     - Sirenix.OdinInspector.CompatibilityLayer.Editor
     - ToonyColorsPro.Demo.Editor

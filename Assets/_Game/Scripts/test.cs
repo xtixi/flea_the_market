@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 
@@ -5,9 +6,14 @@ namespace _Game.Scripts
 {
     public class test : MonoBehaviour
     {
-        void Start()
+        [SerializeField] private List<GameObject> gameObjects;
+        [SerializeField] private int index;
+
+        public void ChangeModel()
         {
-            transform.DOMove(Vector3.one* 10, 1f);
+            gameObjects[gameObjects.Count% index].SetActive(false);
+            index++;
+            gameObjects[gameObjects.Count% index].SetActive(true);
         }
     }
 }
