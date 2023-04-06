@@ -11,9 +11,9 @@ namespace _Game.Scripts
 
         public void ChangeModel()
         {
-            gameObjects[gameObjects.Count% index].SetActive(false);
+            gameObjects[index % gameObjects.Count].SetActive(false);
             index++;
-            gameObjects[gameObjects.Count% index].SetActive(true);
+            gameObjects[index % gameObjects.Count ].SetActive(true);
         }
     }
 }
