@@ -31,16 +31,16 @@ MonoBehaviour:
     assemblyNames:
     - Assembly-CSharp
     - Assembly-CSharp-firstpass
+    - CW.Common
+    - LeanCommonPlus
     - Cinemachine
     - ToonyColorsPro2.Demo
+    - LeanTouch
+    - LeanTouchPlus
     - Sirenix.OdinInspector.CompatibilityLayer
     - ToonyColorsPro.Runtime
-    - KinoBloom.Runtime
-    - LeanTouchPlus
-    - LeanTouch
-    - CW.Common
     - LeanCommon
-    - LeanCommonPlus
+    - KinoBloom.Runtime
     - ToonyColorsPro.Editor
     - Sirenix.OdinInspector.CompatibilityLayer.Editor
     - ToonyColorsPro.Demo.Editor
