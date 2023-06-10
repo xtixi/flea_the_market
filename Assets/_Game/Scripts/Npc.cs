@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using _Game.Scripts;
+using DG.Tweening;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.AI;
@@ -51,6 +52,7 @@ public class Npc : MonoBehaviour
             yield return _waitForEndOfFrame;
         }
         _npcAnimatorController.SetMoving(false);
+        transform.DORotateQuaternion(currentSlot.transform.rotation,.5f);
         //todo
     }
     
