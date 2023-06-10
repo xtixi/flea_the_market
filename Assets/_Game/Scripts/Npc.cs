@@ -31,13 +31,17 @@ public class Npc : MonoBehaviour
         {
             currentSlot.EmptySlot();
         }
-        _npcAnimatorController.SetMoving(true);
         currentSlot = npcRoadSlot;
+        Move(npcRoadSlot.transform);
         npcRoadSlot.FillSlot();
-        navMeshAgent.SetDestination(npcRoadSlot.transform.position);
-        StartCoroutine(StartMoving());
     }
 
+    public void Move(Transform npcRoadSlot)
+    {
+        _npcAnimatorController.SetMoving(true);
+        navMeshAgent.SetDestination(npcRoadSlot.position);
+        StartCoroutine(StartMoving());
+    }
 
     private WaitForEndOfFrame _waitForEndOfFrame = new WaitForEndOfFrame();
     private IEnumerator StartMoving()
@@ -55,7 +59,8 @@ public class Npc : MonoBehaviour
     {
         if(currentSlot)
             currentSlot.EmptySlot();
-        onResume?.Invoke();
+        NpcController.instance.RemoveNpc(this);
+        NpcController.instance.ReOrderAllNpc();
     }
 
     private bool IsDestinationReached()

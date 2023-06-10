@@ -16,5 +16,14 @@ public class NpcRoad : MonoBehaviour
     public NpcRoadSlot GetAvailableSlot()
     {
         return slots.Last(x => x.IsSlotAvailable());
+        // for (int i = slots.Count - 1; i  >= 0; i--)
+        // {
+        //     if (slots[i].IsSlotAvailable())
+        //     {
+        //         return slots[i];
+        //     }
+        // }
+        //
+        // return null;
     }
 }

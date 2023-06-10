@@ -11,7 +11,7 @@ namespace _Game.Scripts
             Full
         }
 
-        public bool isCheckoutSlot;
+        // public bool isCheckoutSlot;
         [SerializeField] private NpcSlotStates npcSlotState;
 
         public bool IsSlotAvailable()
