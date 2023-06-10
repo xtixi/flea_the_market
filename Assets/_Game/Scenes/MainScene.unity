@@ -299,7 +299,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 42048147}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -409,14 +409,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slots:
-  - {fileID: 1900485194}
-  - {fileID: 176580883}
-  - {fileID: 1435215901}
-  - {fileID: 1143065827}
-  - {fileID: 1257931285}
-  - {fileID: 606042547}
-  - {fileID: 247725850}
   - {fileID: 42048152}
+  - {fileID: 247725850}
+  - {fileID: 606042547}
+  - {fileID: 1257931285}
+  - {fileID: 1143065827}
+  - {fileID: 1435215901}
+  - {fileID: 176580883}
+  - {fileID: 1900485194}
 --- !u!1001 &73523303
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -824,7 +824,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 176580878}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1814,7 +1814,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 247725845}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -3316,7 +3316,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 606042542}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -5808,7 +5808,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1143065822}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -6242,6 +6242,8 @@ MonoBehaviour:
   npcPrefab: {fileID: 6022079060463925911, guid: 61c10507da51a544c826fc3083b7306e, type: 3}
   npcRoad: {fileID: 65912011}
   spawnPoint: {fileID: 587556701}
+  minSpawnDelay: 2
+  maxSpawnDelay: 5
 --- !u!4 &1190859252
 Transform:
   m_ObjectHideFlags: 0
@@ -6773,7 +6775,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1257931280}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -8030,7 +8032,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1435215896}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -9649,7 +9651,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1900485189}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -9719,7 +9721,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6c9e8ba85de40e98208ef53ba875f60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isCheckoutSlot: 0
+  isCheckoutSlot: 1
   npcSlotState: 0
 --- !u!1 &1901676899
 GameObject:

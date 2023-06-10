@@ -17,12 +17,8 @@ public class Npc : MonoBehaviour
     [SerializeField,ReadOnly] private NpcRoadSlot currentSlot;
     private NpcAnimatorController _npcAnimatorController;
 
-    private void Start()
-    {
-        PickRandomModel();
-    }
 
-    private void PickRandomModel()
+    public void PickRandomModel()
     {
         var modelAndAnimator = modelSelector.InitModelAndAnimator();
         _npcAnimatorController = modelAndAnimator.Item2;

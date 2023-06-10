@@ -10,7 +10,7 @@ public class NpcRoad : MonoBehaviour
 
     public bool IsRoadFull()
     {
-        return slots.First().IsSlotAvailable();
+        return !slots.First().IsSlotAvailable();
     }
 
     public NpcRoadSlot GetAvailableSlot()
