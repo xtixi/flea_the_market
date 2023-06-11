@@ -1,9 +1,33 @@
+using System;
 using System.Collections.Generic;
-using _Game.Scripts.Game;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
-public class GameController : MonoBehaviour
+
+namespace _Game.Scripts
 {
-    [SerializeField] private List<Item> Items;
+    public class GameController : MonoBehaviour
+    {
+        // [SerializeField] private List<Item> Items;
+        public static GameController instance;
+
+
+        public Inventory inventory;
+        
+        private void Awake()
+        {
+            instance = this;
+        }
     
+    }
+
+    [Serializable]
+    public class Inventory
+    {
+        public int size = 10;
+        [ReadOnly] public readonly List<Item> items = new ();
+    }
+
 }
+
+

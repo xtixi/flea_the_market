@@ -21,8 +21,8 @@ public class Npc : MonoBehaviour
 
     public void PickRandomModel()
     {
-        var modelAndAnimator = modelSelector.InitModelAndAnimator();
-        _npcAnimatorController = modelAndAnimator.Item2;
+        var npcModel = modelSelector.SelectNpc();
+        _npcAnimatorController = npcModel.animatorController;
     }
 
     [Button]

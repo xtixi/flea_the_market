@@ -14,11 +14,29 @@ public class ModelSelector : MonoBehaviour
         // InitModelAndAnimator();
     }
 
-    internal Tuple<GameObject, NpcAnimatorController> InitModelAndAnimator()
+    // internal Tuple<GameObject, NpcAnimatorController> InitModelAndAnimator()
+    // {
+    //     var selectedModel = transform.GetChild(Random.Range(0, transform.childCount)).gameObject;
+    //     var selectedAnimatorController = selectedModel.GetComponent<NpcAnimatorController>();
+    //     selectedModel.SetActive(true);
+    //     return new Tuple<GameObject, NpcAnimatorController>(selectedModel,selectedAnimatorController);
+    // }
+    //
+    internal GameObject InitModel()
     {
         var selectedModel = transform.GetChild(Random.Range(0, transform.childCount)).gameObject;
-        var selectedAnimatorController = selectedModel.GetComponent<NpcAnimatorController>();
         selectedModel.SetActive(true);
-        return new Tuple<GameObject, NpcAnimatorController>(selectedModel,selectedAnimatorController);
+        return selectedModel;
     }
+    
+    internal NpcModel SelectNpc()
+    {
+        var selectedModel = transform.GetChild(Random.Range(0, transform.childCount)).gameObject;
+        var npcModel = selectedModel.GetComponent<NpcModel>();
+        selectedModel.SetActive(true);
+        return npcModel;
+    }
+    
+    
+    
 }
