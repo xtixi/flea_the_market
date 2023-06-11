@@ -4,6 +4,8 @@ using _Game.Scripts;
 using DG.Tweening;
 using HighlightPlus;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 
 public class ThreeDButton : MonoBehaviour, IInteractable
@@ -11,14 +13,15 @@ public class ThreeDButton : MonoBehaviour, IInteractable
     [SerializeField] private HighlightEffect highlightEffect;
     [SerializeField] private float clickedYPos;
     private bool _animLock;
-    
+    public UnityEvent onButtonClicked;
+
     public void OnMouseDown()
     {
         if (_animLock)
         {
             return;
         }
-        
+        onButtonClicked?.Invoke();
         _animLock = true;
         transform.DOLocalMoveY(clickedYPos,.2f).SetLoops(2, LoopType.Yoyo).OnComplete(() => { _animLock = false;});
     }

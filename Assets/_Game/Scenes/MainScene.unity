@@ -1505,6 +1505,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   highlightEffect: {fileID: 264565586}
   clickedYPos: 7.1
+  onButtonClicked:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &264565586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2301,6 +2304,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   highlightEffect: {fileID: 359958883}
   clickedYPos: 7.1
+  onButtonClicked:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &359958883
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2527,6 +2533,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   highlightEffect: {fileID: 364164923}
   clickedYPos: 7.1
+  onButtonClicked:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &364164923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2737,6 +2746,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   highlightEffect: {fileID: 411720069}
   clickedYPos: 7.1
+  onButtonClicked:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &411720069
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3928,6 +3940,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   highlightEffect: {fileID: 633989017}
   clickedYPos: 7.1
+  onButtonClicked:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &633989017
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4539,6 +4554,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   highlightEffect: {fileID: 680040533}
   clickedYPos: 7.1
+  onButtonClicked:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &680040533
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7485,6 +7503,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   highlightEffect: {fileID: 1270320658}
   clickedYPos: 7.1
+  onButtonClicked:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1270320658
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8476,6 +8497,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   highlightEffect: {fileID: 1354481398}
   clickedYPos: 7.1
+  onButtonClicked:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1354481398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9789,6 +9813,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   highlightEffect: {fileID: 1597551182}
   clickedYPos: 7.1
+  onButtonClicked:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1597551182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11218,6 +11245,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   highlightEffect: {fileID: 1842944342}
   clickedYPos: 7.1
+  onButtonClicked:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1930586476}
+        m_TargetAssemblyTypeName: GameUIController, Assembly-CSharp
+        m_MethodName: NoThanksButtonTapped
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &1885515785
 PrefabInstance:
   m_ObjectHideFlags: 0

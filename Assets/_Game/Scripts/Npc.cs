@@ -49,6 +49,24 @@ namespace _Game.Scripts
             }
         }
 
+
+        public void MoveItemToCheckout()
+        {
+            MoveItem(GameController.instance.checkOutSlot);
+        }
+        public void MoveItemBack()
+        {
+            MoveItem(_npcModel.itemSlot);
+        }
+
+        private void MoveItem(Transform movePos)
+        {
+            currentItem.transform.SetParent(movePos);
+            currentItem.transform.DOLocalJump(Vector3.zero, 1f,1,.5f) ;
+            currentItem.transform.DOLocalRotate(Vector3.zero, .5f);
+            currentItem.transform.DOScale(Vector3.one,.5f);
+        }
+
         private void InitCharacteristics()
         {
             //todo kasaya gelene kadar envanter dolarsa veya bosalirsa nolcak ona bi bak
@@ -111,11 +129,10 @@ namespace _Game.Scripts
 
             if (currentRoadSlot.isCheckoutSlot)
             {
-                currentItem.transform.SetParent(GameController.instance.checkOutSlot);
-                currentItem.transform.DOLocalJump(Vector3.zero, 1f,1,.5f) ;
-                currentItem.transform.DOLocalRotate(Vector3.zero, .5f);
-                currentItem.transform.DOScale(Vector3.one,.5f);
-                _npcModel.animatorController.SetHolding(false);
+                canInteractable = true;
+                // MoveItem(GameController.instance.checkOutSlot);
+                // _npcModel.animatorController.SetHolding(false);
+
             }
         }
 
@@ -124,6 +141,7 @@ namespace _Game.Scripts
         {
             if (currentRoadSlot)
                 currentRoadSlot.EmptySlot();
+            canInteractable = false;
             NpcController.instance.RemoveNpc(this);
             NpcController.instance.ReOrderAllNpc();
         }
@@ -156,14 +174,23 @@ namespace _Game.Scripts
 
 
         [SerializeField] private HighlightEffect h;
-
+        [SerializeField] private bool canInteractable;
+        
         public void OnMouseDown()
         {
+            if (!canInteractable)
+            {
+                return;
+            }
             GameUIController.instance.OpenTopLeftPanel();
         }
 
         public void OnInteraction()
         {
+            if (!canInteractable)
+            {
+                return;
+            }
             if (currentRoadSlot.isCheckoutSlot)
             {
                 h.enabled = true;

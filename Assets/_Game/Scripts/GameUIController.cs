@@ -74,11 +74,14 @@ public class GameUIController : MonoBehaviour
     
     public void LetsSeeButtonTapped()
     {
+        NpcController.instance.npcCharactersOnRoad.First().MoveItemToCheckout();
     }
     
     public void NoThanksButtonTapped()
     {
         CloseTopLeftPanel();
+        NpcController.instance.npcCharactersOnRoad.First().MoveItemBack();
         NpcController.instance.npcCharactersOnRoad.First().Resume();
+        
     }
 }
