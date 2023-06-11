@@ -33,7 +33,9 @@ namespace _Game.Scripts
     [Serializable]
     public class Inventory
     {
-        
+        public int month;
+        public int week;
+        public int day;
         public int money = 500;
         public int size = 10;
         [ReadOnly] public readonly List<Item> items = new ();

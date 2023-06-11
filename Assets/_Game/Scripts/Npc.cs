@@ -51,6 +51,7 @@ namespace _Game.Scripts
 
         public Item MoveItemToCheckout()
         {
+            _npcModel.animatorController.SetHolding(false);
             currentItem.interactable = true;
             currentItem.itemModel.collider.enabled = true;
             MoveItem(GameController.instance.checkOutSlot);
@@ -58,6 +59,7 @@ namespace _Game.Scripts
         }
         public void MoveItemBack()
         {
+            _npcModel.animatorController.SetHolding(true);
             currentItem.interactable = true;
             MoveItem(_npcModel.itemSlot);
         }

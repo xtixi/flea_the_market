@@ -23,7 +23,7 @@ public class ThreeDButton : MonoBehaviour, IInteractable
         }
         onButtonClicked?.Invoke();
         _animLock = true;
-        transform.DOLocalMoveY(clickedYPos,.2f).SetLoops(2, LoopType.Yoyo).OnComplete(() => { _animLock = false;});
+        transform.DOLocalMoveY(clickedYPos,.05f).SetLoops(2, LoopType.Yoyo).OnComplete(() => { _animLock = false;});
     }
 
     public void OnInteraction()

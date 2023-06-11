@@ -53,6 +53,20 @@ public class GameUIController : MonoBehaviour
     private void Start()
     {
         InitItemValues(null);
+        UpdateEarnedMoneyText();
+        UpdateDate();
+    }
+
+    private void UpdateEarnedMoneyText()
+    {
+        money.text = $"${GameController.instance.inventory.money}";
+    }
+
+    private void UpdateDate()
+    {
+        dateD.text = GameController.instance.inventory.day.ToString();
+        dateW.text = GameController.instance.inventory.week.ToString();
+        dateM.text = GameController.instance.inventory.month.ToString();
     }
 
     public void InitItemValues(Item item)
@@ -62,7 +76,7 @@ public class GameUIController : MonoBehaviour
             rarityText.text = $"Rarity: ???";
             conditionText.text = $"Condition: ???";
             categoryText.text = $"Category: ???";
-            estimateText.text = $"Estimate: ???";
+            estimateText.text = $"Estimate Price: ???";
             paidText.text = $"Paid: ???";
             return;
         }
@@ -71,7 +85,7 @@ public class GameUIController : MonoBehaviour
         rarityText.text = $"Rarity: {item.rarity}";
         conditionText.text = $"Condition: {item.condition}";
         categoryText.text = $"Category: {item.category}";
-        estimateText.text = $"Estimate: {item.estimatedPrice}";
+        estimateText.text = $"Estimate Price: ${item.estimatedPrice}";
         paidText.text = $"Paid: {item.paidPrice}";
     }
 
@@ -89,17 +103,17 @@ public class GameUIController : MonoBehaviour
             {
                 AcceptOrder();
             }
-            else if (currentMoneyOffer < currentItem.estimatedPrice - currentItem.estimatedPrice / 10)
+            else if (currentMoneyOffer > currentItem.estimatedPrice - currentItem.estimatedPrice / 10)
             {
-                var a = Random.Range(0, 2);
+                var a = Random.Range(0, 3);
                 if(a == 1)
                     AcceptOrder();
                 else
                     RejectOrder();
             }
-            else if (currentMoneyOffer < currentItem.estimatedPrice - currentItem.estimatedPrice / 5)
+            else if (currentMoneyOffer > currentItem.estimatedPrice - currentItem.estimatedPrice / 5)
             {
-                var a = Random.Range(0, 5);
+                var a = Random.Range(0, 10);
                 if(a == 1)
                     AcceptOrder();
                 else
@@ -118,6 +132,11 @@ public class GameUIController : MonoBehaviour
         {
             return;
         }
+
+        currentItem.paidPrice = currentMoneyOffer;
+        GameController.instance.inventory.money -= currentMoneyOffer;
+        UpdateEarnedMoneyText();
+        currentMoneyOffer = 0;
         triedBidCount = 0;
 
         var slot = GameController.instance.storageSlots.GetAvailableSlot();
@@ -139,14 +158,16 @@ public class GameUIController : MonoBehaviour
 
     private void LoseCustomer()
     {
-        
+        NoThanksButtonTapped();
     }
 
     internal void InitCurrentMoney()
     {
         if (currentItem)
         {
-            currentMoneyOffer = currentItem.estimatedPrice;
+            currentMoneyOffer = GameController.instance.inventory.money <= currentItem.estimatedPrice
+                ? GameController.instance.inventory.money
+                : currentItem.estimatedPrice;
             currentMoneyOfferText.text = $"${currentMoneyOffer.ToString()}";
         }
         else
@@ -238,9 +259,12 @@ public class GameUIController : MonoBehaviour
 
     public async void NoThanksButtonTapped()
     {
+        if (currentItem)
+        {
+            NpcController.instance.npcCharactersOnRoad.First().MoveItemBack();            
+        }
         currentItem = null;
         InitCurrentMoney();
-        NpcController.instance.npcCharactersOnRoad.First().MoveItemBack();
         await Task.Delay(500);
         CloseTopLeftPanel();
         NpcController.instance.npcCharactersOnRoad.First().Resume();
