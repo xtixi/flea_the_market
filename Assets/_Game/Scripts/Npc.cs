@@ -62,13 +62,14 @@ namespace _Game.Scripts
             MoveItem(_npcModel.itemSlot);
         }
 
-        public void MoveItem(Transform movePos)
+        public void MoveItem(Transform movePos, float duration = .5f)
         {
             GameUIController.instance.currentItem = null;
+            GameUIController.instance.InitItemValues(currentItem);
             currentItem.transform.SetParent(movePos);
-            currentItem.transform.DOLocalJump(Vector3.zero, 1f,1,.5f) ;
-            currentItem.transform.DOLocalRotate(Vector3.zero, .5f);
-            currentItem.transform.DOScale(Vector3.one,.5f);
+            currentItem.transform.DOLocalJump(Vector3.zero, 1f,1,duration) ;
+            currentItem.transform.DOLocalRotate(Vector3.zero, duration);
+            currentItem.transform.DOScale(Vector3.one,duration);
         }
 
         private void InitCharacteristics()

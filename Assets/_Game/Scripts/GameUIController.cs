@@ -39,7 +39,39 @@ public class GameUIController : MonoBehaviour
     [SerializeField,ReadOnly] internal Item currentItem;
     [SerializeField,ReadOnly] internal Npc currentNpc;
     [SerializeField] private int triedBidCount;
-    
+
+
+    [SerializeField] private TMP_Text rarityText;
+    [SerializeField] private TMP_Text conditionText;
+    [SerializeField] private TMP_Text categoryText;
+    [SerializeField] private TMP_Text estimateText;
+    [SerializeField] private TMP_Text paidText;
+    // [SerializeField] private TMP_Text nowText;
+
+    private void Start()
+    {
+        InitItemValues(null);
+    }
+
+    public void InitItemValues(Item item)
+    {
+        if (!currentNpc)
+        {
+            rarityText.text = $"Rarity: ???";
+            conditionText.text = $"Condition: ???";
+            categoryText.text = $"Category: ???";
+            estimateText.text = $"Estimate: ???";
+            paidText.text = $"Paid: ???";
+            return;
+        }
+        paidText.gameObject.SetActive(currentNpc.npcType is NpcTypes.Buyer);
+
+        rarityText.text = $"Rarity: {item.rarity}";
+        conditionText.text = $"Condition: {item.condition}";
+        categoryText.text = $"Category: {item.category}";
+        estimateText.text = $"Estimate: {item.estimatedPrice}";
+        paidText.text = $"Paid: {item.paidPrice}";
+    }
 
     public void TryBid()
     {
@@ -88,8 +120,8 @@ public class GameUIController : MonoBehaviour
 
         var slot = GameController.instance.storageSlots.GetAvailableSlot();
         slot.FillSlot();
-        currentNpc.MoveItem(slot.transform);
-        await Task.Delay(100);
+        currentNpc.MoveItem(slot.transform, 1f);
+        await Task.Delay(1000);
         currentNpc.Resume();
         GameController.instance.inventory.money -= currentMoneyOffer;
         InitCurrentMoney();
