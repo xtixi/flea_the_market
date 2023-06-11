@@ -1,20 +1,22 @@
 using System;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 namespace _Game.Scripts
 {
-    public class Item : ScriptableObject
+    public class Item : MonoBehaviour
     {
         [SerializeField] private ModelSelector modelSelector;
-        [SerializeField] private ItemModel itemModel;
-        [SerializeField] public int paidPrice;
-        [SerializeField] public Rarities rarity;
-        [SerializeField] public Conditions condition;
-        [SerializeField] public Categories category;
-        [SerializeField] public int estimatedPrice;
-        private void Awake()
+        [SerializeField,ReadOnly] private ItemModel itemModel;
+        [SerializeField,ReadOnly] public Rarities rarity;
+        [SerializeField,ReadOnly] public Conditions condition;
+        [SerializeField,ReadOnly] public Categories category;
+        [SerializeField,ReadOnly] public int estimatedPrice;
+        [SerializeField,ReadOnly] public int paidPrice;
+
+        private void Start()
         {
             itemModel = modelSelector.InitModel().GetComponent<ItemModel>();
             InitItemVariables();

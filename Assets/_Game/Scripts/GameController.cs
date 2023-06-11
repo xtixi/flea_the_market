@@ -13,6 +13,9 @@ namespace _Game.Scripts
 
 
         public Inventory inventory;
+        [SerializeField] public GameObject ItemPrefab;
+        
+        
         
         private void Awake()
         {
