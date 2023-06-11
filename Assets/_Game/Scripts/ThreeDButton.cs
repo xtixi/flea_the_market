@@ -6,7 +6,7 @@ using HighlightPlus;
 using UnityEngine;
 
 
-public class Button : MonoBehaviour, IInteractable
+public class ThreeDButton : MonoBehaviour, IInteractable
 {
     [SerializeField] private HighlightEffect highlightEffect;
     [SerializeField] private float clickedYPos;

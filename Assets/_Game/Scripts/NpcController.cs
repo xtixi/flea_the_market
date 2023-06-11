@@ -15,7 +15,7 @@ public class NpcController : MonoBehaviour
     [SerializeField] private float minSpawnDelay = 2f;
     [SerializeField] private float maxSpawnDelay = 5f;
     
-    private readonly List<Npc> _npcCharactersOnRoad = new ();
+    public readonly List<Npc> npcCharactersOnRoad = new ();
 
     private void Awake()
     {
@@ -44,20 +44,20 @@ public class NpcController : MonoBehaviour
             return;
         }
         var createdNpc = Instantiate(npcPrefab,spawnPoint.position,spawnPoint.rotation);
-        _npcCharactersOnRoad.Add(createdNpc);
+        npcCharactersOnRoad.Add(createdNpc);
         createdNpc.PickRandomModel();
         createdNpc.Move(npcRoad.GetAvailableSlot());
     }
 
     public void ReOrderAllNpc()
     {
-        _npcCharactersOnRoad.ForEach(x=> x.Move(npcRoad.GetAvailableSlot()));
+        npcCharactersOnRoad.ForEach(x=> x.Move(npcRoad.GetAvailableSlot()));
     }
 
     public void RemoveNpc(Npc npc)
     {
         npc.Move(spawnPoint);
-        _npcCharactersOnRoad.Remove(npc);
+        npcCharactersOnRoad.Remove(npc);
         Destroy(npc.gameObject, 5f);
     }
 }

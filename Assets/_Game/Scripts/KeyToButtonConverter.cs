@@ -1,18 +1,26 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 public class KeyToButtonConverter : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private KeyCode keyCode;
+    [SerializeField] private Button threeDButton;
+
+    private void Update()
     {
-        
+        if (Input.GetKeyDown(keyCode))
+        {
+            Convert();
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Convert()
     {
-        
+        threeDButton.onClick.Invoke();
+
     }
 }

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using _Game.Scripts;
 using DG.Tweening;
+using HighlightPlus;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.AI;
@@ -20,7 +21,7 @@ namespace _Game.Scripts
         Buyer
     }
 
-    public class Npc : MonoBehaviour
+    public class Npc : MonoBehaviour, IInteractable
     {
         [SerializeField] private NavMeshAgent navMeshAgent;
         [SerializeField] private ModelSelector modelSelector;
@@ -40,7 +41,7 @@ namespace _Game.Scripts
         {
             if (npcType is NpcTypes.Seller)
             {
-                currentItem = Instantiate(GameController.instance.ItemPrefab,_npcModel.itemSlot).GetComponent<Item>();
+                currentItem = Instantiate(GameController.instance.itemPrefab,_npcModel.itemSlot).GetComponent<Item>();
                 currentItem.transform.localPosition = Vector3.zero;
                 currentItem.transform.localRotation = Quaternion.identity;
                 currentItem.transform.localScale = Vector3.one;
@@ -107,6 +108,15 @@ namespace _Game.Scripts
             _npcModel.animatorController.SetMoving(false);
             transform.DORotateQuaternion(currentRoadSlot.transform.rotation, .5f);
             //todo
+
+            if (currentRoadSlot.isCheckoutSlot)
+            {
+                currentItem.transform.SetParent(GameController.instance.checkOutSlot);
+                currentItem.transform.DOLocalJump(Vector3.zero, 1f,1,.5f) ;
+                currentItem.transform.DOLocalRotate(Vector3.zero, .5f);
+                currentItem.transform.DOScale(Vector3.one,.5f);
+                _npcModel.animatorController.SetHolding(false);
+            }
         }
 
         [Button]
@@ -142,6 +152,27 @@ namespace _Game.Scripts
         private void OnDisable()
         {
             onResume.RemoveAllListeners();
+        }
+
+
+        [SerializeField] private HighlightEffect h;
+
+        public void OnMouseDown()
+        {
+            GameUIController.instance.OpenTopLeftPanel();
+        }
+
+        public void OnInteraction()
+        {
+            if (currentRoadSlot.isCheckoutSlot)
+            {
+                h.enabled = true;
+            }
+        }
+
+        public void UnInteraction()
+        {
+            h.enabled = false;
         }
     }
 }

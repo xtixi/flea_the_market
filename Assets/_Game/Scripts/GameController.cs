@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 
 namespace _Game.Scripts
@@ -13,7 +14,11 @@ namespace _Game.Scripts
 
 
         public Inventory inventory;
-        [SerializeField] public GameObject ItemPrefab;
+        [SerializeField] public GameObject itemPrefab;
+
+        [SerializeField] public Transform checkOutSlot;
+        
+        [SerializeField] public Movement movementController;
         
         
         
