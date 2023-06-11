@@ -29,7 +29,7 @@ namespace _Game.Scripts
         [SerializeField] public UnityEvent onResume;
         [SerializeField, ReadOnly] private NpcRoadSlot currentRoadSlot;
         [SerializeField,ReadOnly] private Item currentItem;
-        private NpcModel _npcModel;
+        internal NpcModel _npcModel;
 
         [SerializeField] public ParticleSystem happyParticle;
         [SerializeField] public ParticleSystem angryParticle;
@@ -55,8 +55,9 @@ namespace _Game.Scripts
 
         public Item MoveItemToCheckout()
         {
-            if (!currentItem)
+            if (npcType is NpcTypes.Buyer) 
             {
+                currentItem.GetComponentInParent<StorageSlot>().EmptySlot();
                 //npc is buyer
             }
             
@@ -154,7 +155,6 @@ namespace _Game.Scripts
                         Resume();
                         yield break;
                     }
-
                     currentItem = GameController.instance.inventory.items[Random.Range(0, GameController.instance.inventory.items.Count)];
                 }
 

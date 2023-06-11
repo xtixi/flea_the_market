@@ -36,7 +36,7 @@ namespace _Game.Scripts
         public int month;
         public int week;
         public int day;
-        public int money = 500;
+        public int money = 2500;
         public int size = 10;
         [ReadOnly] public readonly List<Item> items = new ();
     }
