@@ -132,6 +132,7 @@ public class GameUIController : MonoBehaviour
         {
             return;
         }
+        GameController.instance.inventory.items.Add(currentItem);
 
         currentItem.paidPrice = currentMoneyOffer;
         GameController.instance.inventory.money -= currentMoneyOffer;
@@ -152,6 +153,7 @@ public class GameUIController : MonoBehaviour
     {
         if (triedBidCount > 2)
         {
+            triedBidCount = 0;
             LoseCustomer();
         }
     }
