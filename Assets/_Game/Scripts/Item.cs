@@ -11,7 +11,7 @@ namespace _Game.Scripts
     public class Item : MonoBehaviour, IInteractable
     {
         [SerializeField] private ModelSelector modelSelector;
-        [SerializeField,ReadOnly] private ItemModel itemModel;
+        [SerializeField,ReadOnly] internal ItemModel itemModel;
         [SerializeField,ReadOnly] public Rarities rarity;
         [SerializeField,ReadOnly] public Conditions condition;
         [SerializeField,ReadOnly] public Categories category;
@@ -21,7 +21,7 @@ namespace _Game.Scripts
 
         [SerializeField] private HighlightEffect highlightEffect;
         [SerializeField,ReadOnly] public bool interactable;
-        
+
         private void Start()
         {
             itemModel = modelSelector.InitModel().GetComponent<ItemModel>();

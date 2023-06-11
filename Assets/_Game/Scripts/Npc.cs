@@ -23,11 +23,11 @@ namespace _Game.Scripts
 
     public class Npc : MonoBehaviour, IInteractable
     {
+        [SerializeField] internal NpcTypes npcType;
         [SerializeField] private NavMeshAgent navMeshAgent;
         [SerializeField] private ModelSelector modelSelector;
         [SerializeField] public UnityEvent onResume;
         [SerializeField, ReadOnly] private NpcRoadSlot currentRoadSlot;
-        [SerializeField] private NpcTypes npcType;
         [SerializeField,ReadOnly] private Item currentItem;
         private NpcModel _npcModel;
 
@@ -45,7 +45,6 @@ namespace _Game.Scripts
                 currentItem.transform.localPosition = Vector3.zero;
                 currentItem.transform.localRotation = Quaternion.identity;
                 currentItem.transform.localScale = Vector3.one;
-                
             }
         }
 
@@ -53,6 +52,7 @@ namespace _Game.Scripts
         public Item MoveItemToCheckout()
         {
             currentItem.interactable = true;
+            currentItem.itemModel.collider.enabled = true;
             MoveItem(GameController.instance.checkOutSlot);
             return currentItem;
         }
@@ -62,8 +62,9 @@ namespace _Game.Scripts
             MoveItem(_npcModel.itemSlot);
         }
 
-        private void MoveItem(Transform movePos)
+        public void MoveItem(Transform movePos)
         {
+            GameUIController.instance.currentItem = null;
             currentItem.transform.SetParent(movePos);
             currentItem.transform.DOLocalJump(Vector3.zero, 1f,1,.5f) ;
             currentItem.transform.DOLocalRotate(Vector3.zero, .5f);
@@ -133,6 +134,8 @@ namespace _Game.Scripts
             if (currentRoadSlot.isCheckoutSlot)
             {
                 canInteractable = true;
+                GameUIController.instance.currentNpc = this;
+                GameUIController.instance.InitCurrentMoney();
                 // MoveItem(GameController.instance.checkOutSlot);
                 // _npcModel.animatorController.SetHolding(false);
 
@@ -143,7 +146,13 @@ namespace _Game.Scripts
         public void Resume()
         {
             if (currentRoadSlot)
+            {
+                if (currentRoadSlot.isCheckoutSlot)
+                {
+                    GameUIController.instance.currentNpc = null;
+                }
                 currentRoadSlot.EmptySlot();
+            }
             canInteractable = false;
             NpcController.instance.RemoveNpc(this);
             NpcController.instance.ReOrderAllNpc();

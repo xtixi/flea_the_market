@@ -19,7 +19,8 @@ namespace _Game.Scripts
         [SerializeField] public Transform checkOutSlot;
         
         [SerializeField] public Movement movementController;
-        
+
+        [SerializeField] public StorageSlots storageSlots;
         
         
         private void Awake()
@@ -32,6 +33,8 @@ namespace _Game.Scripts
     [Serializable]
     public class Inventory
     {
+        
+        public int money = 500;
         public int size = 10;
         [ReadOnly] public readonly List<Item> items = new ();
     }

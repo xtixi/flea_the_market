@@ -9,6 +9,7 @@ using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 public class GameUIController : MonoBehaviour
 {
@@ -33,17 +34,86 @@ public class GameUIController : MonoBehaviour
     [SerializeField] private TMP_Text dateW;
     [SerializeField] private TMP_Text dateD;
 
-    [SerializeField,ReadOnly] private int currentMoney;
+    [SerializeField,ReadOnly] private int currentMoneyOffer;
     [SerializeField] private TMP_Text currentMoneyOfferText;
-    [SerializeField,ReadOnly] private Item currentItem;
+    [SerializeField,ReadOnly] internal Item currentItem;
+    [SerializeField,ReadOnly] internal Npc currentNpc;
+    [SerializeField] private int triedBidCount;
+    
 
+    public void TryBid()
+    {
+        if (!currentItem)
+        {
+            return;
+        }
 
-    private void InitCurrentMoney()
+        triedBidCount++;
+        if (currentNpc.npcType is NpcTypes.Seller)
+        {
+            if (currentMoneyOffer >= currentItem.estimatedPrice )
+            {
+                AcceptOrder();
+            }
+            else if (currentMoneyOffer < currentItem.estimatedPrice - currentItem.estimatedPrice / 10)
+            {
+                var a = Random.Range(0, 2);
+                if(a == 1)
+                    AcceptOrder();
+                else
+                    RejectOrder();
+            }
+            else if (currentMoneyOffer < currentItem.estimatedPrice - currentItem.estimatedPrice / 5)
+            {
+                var a = Random.Range(0, 5);
+                if(a == 1)
+                    AcceptOrder();
+                else
+                    RejectOrder();
+            }
+            else
+            {
+                RejectOrder();
+            }
+        }
+    }
+
+    private async void AcceptOrder()
+    {
+        if (!currentItem)
+        {
+            return;
+        }
+        triedBidCount = 0;
+
+        var slot = GameController.instance.storageSlots.GetAvailableSlot();
+        slot.FillSlot();
+        currentNpc.MoveItem(slot.transform);
+        await Task.Delay(100);
+        currentNpc.Resume();
+        GameController.instance.inventory.money -= currentMoneyOffer;
+        InitCurrentMoney();
+    }
+
+    private void RejectOrder()
+    {
+        if (triedBidCount > 2)
+        {
+            LoseCustomer();
+        }
+    }
+
+    private void LoseCustomer()
+    {
+        
+    }
+
+    internal void InitCurrentMoney()
     {
         if (currentItem)
         {
-            currentMoney = currentItem.estimatedPrice;
-            currentMoneyOfferText.text = $"${currentMoney.ToString()}";
+            currentMoneyOffer = currentItem.estimatedPrice;
+            currentMoneyOfferText.text = $"${currentMoneyOffer.ToString()}";
         }
         else
         {
@@ -58,9 +128,17 @@ public class GameUIController : MonoBehaviour
             return;
         }
 
-        var value = currentMoney / 100;
-        currentMoney += value == 0 ? 1 : value;
-        currentMoneyOfferText.text = $"${currentMoney.ToString()}";
+
+
+        var value = currentMoneyOffer / 100;
+
+        if (currentMoneyOffer + value > GameController.instance.inventory.money)
+        {
+            return;
+        }
+        
+        currentMoneyOffer += value == 0 ? 1 : value;
+        currentMoneyOfferText.text = $"${currentMoneyOffer.ToString()}";
     }
 
     public void DecreaseValue()
@@ -69,9 +147,15 @@ public class GameUIController : MonoBehaviour
         {
             return;
         }
-        var value = currentMoney / 100;
-        currentMoney -= value == 0 ? 1 : value;
-        currentMoneyOfferText.text = $"${currentMoney.ToString()}";
+        var value = currentMoneyOffer / 100;
+
+        if (currentMoneyOffer - value <= 0)
+        {
+            return;
+        }
+        
+        currentMoneyOffer -= value == 0 ? 1 : value;
+        currentMoneyOfferText.text = $"${currentMoneyOffer.ToString()}";
     }
 
 

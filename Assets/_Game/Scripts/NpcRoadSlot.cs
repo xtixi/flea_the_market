@@ -1,31 +1,32 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace _Game.Scripts
 {
     
     public class NpcRoadSlot : MonoBehaviour
     {
-        private enum NpcSlotStates
+        public enum SlotStates
         {
             Empty,
             Full
         }
 
         public bool isCheckoutSlot;
-        [SerializeField] private NpcSlotStates npcSlotState;
+        [FormerlySerializedAs("npcSlotState")] [SerializeField] private SlotStates slotState;
 
         public bool IsSlotAvailable()
         {
-            return npcSlotState is NpcSlotStates.Empty;
+            return slotState is SlotStates.Empty;
         }
 
         public void FillSlot()
         {
-            npcSlotState = NpcSlotStates.Full;
+            slotState = SlotStates.Full;
         }
         public void EmptySlot()
         {
-            npcSlotState = NpcSlotStates.Empty;
+            slotState = SlotStates.Empty;
         }
     }
 }

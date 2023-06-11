@@ -5,6 +5,7 @@ namespace _Game.Scripts
     public class ItemModel : MonoBehaviour
     {
         [SerializeField] public ItemInfo itemInfo;
+        [SerializeField] public Collider collider;
         
     }
 }
