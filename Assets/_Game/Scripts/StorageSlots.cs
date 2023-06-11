@@ -10,11 +10,19 @@ public class StorageSlots : MonoBehaviour
 
     public bool IsRoadFull()
     {
+        return false;
         return !slots.First().IsSlotAvailable();
     }
 
     public StorageSlot GetAvailableSlot()
     {
-        return slots.FirstOrDefault(x => x.IsSlotAvailable());
+        // return slots.FirstOrDefault(x => x.IsSlotAvailable());
+        var  asd = slots.FirstOrDefault(x => x.IsSlotAvailable());
+        if (asd == null)
+        {
+            asd = slots[Random.Range(0, slots.Count)];
+        }
+
+        return asd;
     }
 }

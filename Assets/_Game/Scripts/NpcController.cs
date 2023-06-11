@@ -59,5 +59,6 @@ public class NpcController : MonoBehaviour
         npc.Move(spawnPoint);
         npcCharactersOnRoad.Remove(npc);
         Destroy(npc.gameObject, 5f);
+        GameUIController.instance.InitItemValues(null);
     }
 }

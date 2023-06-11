@@ -31,6 +31,10 @@ namespace _Game.Scripts
         [SerializeField,ReadOnly] private Item currentItem;
         private NpcModel _npcModel;
 
+        [SerializeField] public ParticleSystem happyParticle;
+        [SerializeField] public ParticleSystem angryParticle;
+        
+        
         private void Start()
         {
             InitCharacteristics();
@@ -51,6 +55,12 @@ namespace _Game.Scripts
 
         public Item MoveItemToCheckout()
         {
+            if (!currentItem)
+            {
+                //npc is buyer
+            }
+            
+            
             _npcModel.animatorController.SetHolding(false);
             currentItem.interactable = true;
             currentItem.itemModel.collider.enabled = true;
@@ -136,6 +146,22 @@ namespace _Game.Scripts
 
             if (currentRoadSlot.isCheckoutSlot)
             {
+                if (!currentItem)
+                {
+                    //npc is buyer
+                    if (GameController.instance.inventory.items.Count <= 0)
+                    {
+                        Resume();
+                        yield break;
+                    }
+
+                    currentItem = GameController.instance.inventory.items[Random.Range(0, GameController.instance.inventory.items.Count)];
+                }
+
+                if (GameController.instance.storageSlots.IsRoadFull())
+                {
+                    //todo
+                }
                 canInteractable = true;
                 GameUIController.instance.currentNpc = this;
                 GameUIController.instance.InitCurrentMoney();
