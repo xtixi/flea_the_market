@@ -50,10 +50,11 @@ namespace _Game.Scripts
         }
 
 
-        public void MoveItemToCheckout()
+        public Item MoveItemToCheckout()
         {
             currentItem.interactable = true;
             MoveItem(GameController.instance.checkOutSlot);
+            return currentItem;
         }
         public void MoveItemBack()
         {

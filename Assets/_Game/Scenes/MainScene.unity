@@ -2748,7 +2748,19 @@ MonoBehaviour:
   clickedYPos: 7.1
   onButtonClicked:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1930586476}
+        m_TargetAssemblyTypeName: GameUIController, Assembly-CSharp
+        m_MethodName: DecreaseValue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &411720069
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6353,7 +6365,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: $1,233,233
+  m_text: Waiting For Customer...
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -6380,7 +6392,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 0.55
+  m_fontSize: 0.4
   m_fontSizeBase: 1
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -9815,7 +9827,19 @@ MonoBehaviour:
   clickedYPos: 7.1
   onButtonClicked:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1930586476}
+        m_TargetAssemblyTypeName: GameUIController, Assembly-CSharp
+        m_MethodName: IncreaseValue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1597551182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11791,6 +11815,9 @@ MonoBehaviour:
   dateM: {fileID: 581821854}
   dateW: {fileID: 1296900369}
   dateD: {fileID: 1294955189}
+  currentMoney: 0
+  currentMoneyOfferText: {fileID: 1097792098}
+  currentItem: {fileID: 0}
 --- !u!4 &1945448475 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8392093747070504028, guid: 1c021346217db674f9606ac88503ef52, type: 3}
