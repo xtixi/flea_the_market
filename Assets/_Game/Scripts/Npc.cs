@@ -52,10 +52,12 @@ namespace _Game.Scripts
 
         public void MoveItemToCheckout()
         {
+            currentItem.interactable = true;
             MoveItem(GameController.instance.checkOutSlot);
         }
         public void MoveItemBack()
         {
+            currentItem.interactable = true;
             MoveItem(_npcModel.itemSlot);
         }
 

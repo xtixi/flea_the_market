@@ -1,12 +1,14 @@
 using System;
+using HighlightPlus;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Serialization;
+using YamyStudio.Utilities.Extensions;
 using Random = UnityEngine.Random;
 
 namespace _Game.Scripts
 {
-    public class Item : MonoBehaviour
+    public class Item : MonoBehaviour, IInteractable
     {
         [SerializeField] private ModelSelector modelSelector;
         [SerializeField,ReadOnly] private ItemModel itemModel;
@@ -16,9 +18,16 @@ namespace _Game.Scripts
         [SerializeField,ReadOnly] public int estimatedPrice;
         [SerializeField,ReadOnly] public int paidPrice;
 
+
+        [SerializeField] private HighlightEffect highlightEffect;
+        [SerializeField,ReadOnly] public bool interactable;
+        
         private void Start()
         {
             itemModel = modelSelector.InitModel().GetComponent<ItemModel>();
+            // Collider.center = itemModel.GetComponent<BoxCollider>().center.WithAddY(itemModel.transform.localPosition.y);
+            // Collider.center = itemModel.GetComponent<BoxCollider>().size;
+            // Destroy(itemModel.GetComponent<BoxCollider>());
             InitItemVariables();
         }
 
@@ -38,7 +47,28 @@ namespace _Game.Scripts
         }
 
 
+        public void OnMouseDown()
+        {
+            if (!interactable)
+            {
+                return;
+            }
+        }
 
+        public void OnInteraction()
+        {
+            if (!interactable)
+            {
+                return;
+            }
+
+            highlightEffect.enabled = true;
+        }
+
+        public void UnInteraction()
+        {
+            highlightEffect.enabled = false;
+        }
     }
 
 
