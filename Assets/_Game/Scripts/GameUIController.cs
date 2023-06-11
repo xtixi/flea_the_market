@@ -48,6 +48,8 @@ public class GameUIController : MonoBehaviour
     [SerializeField] private TMP_Text paidText;
     // [SerializeField] private TMP_Text nowText;
 
+    
+    
     private void Start()
     {
         InitItemValues(null);
