@@ -9,7 +9,8 @@ namespace _Game.Scripts
         [SerializeField] private GameObject firstPanel;
         [SerializeField] private GameObject secondPanel;
         [SerializeField] private GameObject thirdPanel;
-
+        [SerializeField] private QuickSettings quickSettings;
+        
         public void OnStartButtonTapped()
         {
             panelChanger.ChangePanel(firstPanel,secondPanel);
@@ -32,6 +33,16 @@ namespace _Game.Scripts
         public void OnStartGameButtonTapped()
         {
             SceneManager.LoadScene(sceneBuildIndex: 1);
+        }
+
+        public void OnCreditsButtonDown()
+        {
+            Application.OpenURL("https://github.com/xtixi");
+        }
+
+        public void OnSettingsButtonDown()
+        {
+            quickSettings.OpenPanel();
         }
     }
 }
