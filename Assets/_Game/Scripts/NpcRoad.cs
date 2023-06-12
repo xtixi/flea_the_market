@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class NpcRoad : MonoBehaviour
 {
-    [SerializeField] private List<NpcRoadSlot> slots;
+    [SerializeField] internal List<NpcRoadSlot> slots;
 
     public bool IsRoadFull()
     {

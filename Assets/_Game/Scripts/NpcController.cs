@@ -29,8 +29,11 @@ public class NpcController : MonoBehaviour
 
     private IEnumerator StartSpawning()
     {
-        while (!npcRoad.IsRoadFull())
+        var randomNumber = Random.Range(2, npcRoad.slots.Count);
+        var count = 0;
+        while (!npcRoad.IsRoadFull() && count < randomNumber)
         {
+            count++;
             CreateNpc();
             yield return new WaitForSeconds(Random.Range(minSpawnDelay, maxSpawnDelay));
         }
@@ -60,5 +63,9 @@ public class NpcController : MonoBehaviour
         npcCharactersOnRoad.Remove(npc);
         Destroy(npc.gameObject, 5f);
         GameUIController.instance.InitItemValues(null);
+        if (npcCharactersOnRoad.Count <= 0)
+        {
+            GameController.instance.EndDay();
+        }
     }
 }

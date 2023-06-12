@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 
 namespace _Game.Scripts
@@ -23,11 +25,44 @@ namespace _Game.Scripts
         [SerializeField] public StorageSlots storageSlots;
         
         
+        
         private void Awake()
         {
             instance = this;
         }
-    
+
+
+
+
+        [SerializeField] private Image fadeImage;
+        [SerializeField] private TMP_Text dailyProfitText;
+        
+        
+        public async void StartDay()
+        {
+            inventory.day++;
+            if (inventory.day > 7)
+            {
+                inventory.day = 0;
+                inventory.week++;
+            }
+
+            if (inventory.week > 4)
+            {
+                inventory.week = 0;
+                inventory.month++;
+            }
+
+            GameUIController.instance.UpdateDate();
+            
+            
+            
+        }
+
+        public async void EndDay()
+        {
+            
+        }
     }
 
     [Serializable]
