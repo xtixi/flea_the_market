@@ -10927,6 +10927,7 @@ MonoBehaviour:
   spawnPoint: {fileID: 587556701}
   minSpawnDelay: 2
   maxSpawnDelay: 5
+  isSpawningEnded: 0
 --- !u!4 &1190859252
 Transform:
   m_ObjectHideFlags: 0
@@ -15316,6 +15317,7 @@ MonoBehaviour:
   - {fileID: 1776464512}
   - {fileID: 70068628}
   - {fileID: 1901676901}
+  isDayEnded: 0
 --- !u!4 &1648925911
 Transform:
   m_ObjectHideFlags: 0
@@ -17619,7 +17621,7 @@ MonoBehaviour:
   money: {fileID: 1560741241}
   dateM: {fileID: 1164491139}
   dateW: {fileID: 110200124}
-  dateD: {fileID: 663454034}
+  dateD: {fileID: 1558858006}
   currentMoneyOffer: 0
   currentMoneyOfferText: {fileID: 1097792098}
   currentItem: {fileID: 0}

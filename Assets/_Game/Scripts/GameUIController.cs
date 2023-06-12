@@ -39,7 +39,7 @@ public class GameUIController : MonoBehaviour
     [SerializeField] private TMP_Text dateD;
 
     [SerializeField, ReadOnly] private int currentMoneyOffer;
-    [SerializeField] private TMP_Text currentMoneyOfferText;
+    [SerializeField] public TMP_Text currentMoneyOfferText;
     [SerializeField, ReadOnly] internal Item currentItem;
     [SerializeField, ReadOnly] internal Npc currentNpc;
     [SerializeField] private int triedBidCount;

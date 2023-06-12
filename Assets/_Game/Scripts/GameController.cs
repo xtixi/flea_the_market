@@ -42,6 +42,7 @@ namespace _Game.Scripts
         
         public async void StartDay()
         {
+
             inventory.day++;
             if (inventory.day > 7)
             {
@@ -57,8 +58,12 @@ namespace _Game.Scripts
 
             GameUIController.instance.UpdateDate();
             
-            
-            
+            SetLightsOn();
+            isDayEnded = false;
+
+            await Task.Delay(5000);
+            NpcController.instance.Start();
+
         }
 
         [SerializeField] private List<Light> lights;
@@ -66,7 +71,7 @@ namespace _Game.Scripts
         [Button]
         public void EndDay()
         {
-            DOVirtual.Color(RenderSettings.ambientSkyColor ,Color.black, 7f,SetColor).OnComplete(SetLightsOff);
+            DOVirtual.Color(RenderSettings.ambientSkyColor ,Color.black, 4F,SetColor).OnComplete(SetLightsOff);
         }
 
         private void SetColor(Color value)
@@ -79,10 +84,38 @@ namespace _Game.Scripts
             for (int i = 0; i < lights.Count; i++)
             {
                 lights[i].enabled = false;
-                await Task.Delay(1000);
+                await Task.Delay(500);
             }
+
+            isDayEnded = true;
+            GameUIController.instance.currentMoneyOfferText.color = Color.green;
+            GameUIController.instance.currentMoneyOfferText.text = "Press F2 To Jump Next Day";
+        }
+        
+        private async void SetLightsOn()
+        {
+            GameUIController.instance.currentMoneyOfferText.color = Color.white;
+            GameUIController.instance.currentMoneyOfferText.text = "Waiting For Customer...";
+            for (int i = lights.Count - 1; i >= 0; i--)
+            {
+                lights[i].enabled = true;
+                await Task.Delay(500);
+            }
+            DOVirtual.Color(RenderSettings.ambientSkyColor ,Color.white, 4F,SetColor);
         }
 
+        [SerializeField] private bool isDayEnded;
+        
+        private void Update()
+        {
+            if (isDayEnded)
+            {
+                if (Input.GetKeyDown(KeyCode.F2))
+                {
+                    StartDay();
+                }
+            }
+        }
     }
 
     [Serializable]

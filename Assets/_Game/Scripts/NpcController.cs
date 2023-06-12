@@ -16,27 +16,34 @@ public class NpcController : MonoBehaviour
     [SerializeField] private float maxSpawnDelay = 5f;
     
     public readonly List<Npc> npcCharactersOnRoad = new ();
-
+    public bool isSpawningEnded;
+    
     private void Awake()
     {
         instance = this;
     }
 
-    private void Start()
+    public void Start()
     {
         StartCoroutine(StartSpawning());
     }
 
     private IEnumerator StartSpawning()
     {
+        isSpawningEnded = false;
         var randomNumber = Random.Range(2, npcRoad.slots.Count);
         var count = 0;
         while (!npcRoad.IsRoadFull() && count < randomNumber)
         {
             count++;
             CreateNpc();
+            if (count >= randomNumber)
+            {
+                isSpawningEnded = true;
+            }
             yield return new WaitForSeconds(Random.Range(minSpawnDelay, maxSpawnDelay));
         }
+
     }
 
 
@@ -63,7 +70,7 @@ public class NpcController : MonoBehaviour
         npcCharactersOnRoad.Remove(npc);
         Destroy(npc.gameObject, 5f);
         GameUIController.instance.InitItemValues(null);
-        if (npcCharactersOnRoad.Count <= 0)
+        if (npcCharactersOnRoad.Count <= 0 && isSpawningEnded)
         {
             GameController.instance.EndDay();
         }
