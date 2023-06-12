@@ -183,6 +183,8 @@ public class GameUIController : MonoBehaviour
             return;
         }
 
+        SoundManager.instance.PlayCoinSound();
+        
         CloseTopLeftPanel();
         seeLock = false;
         currentNpc.happyParticle.Play();
