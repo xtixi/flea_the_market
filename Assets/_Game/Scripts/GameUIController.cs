@@ -366,7 +366,9 @@ public class GameUIController : MonoBehaviour
                 }
                 else
                 {
-                    currentNpc.MoveItem(GameController.instance.storageSlots.GetAvailableSlot().transform);
+                    var slot = GameController.instance.storageSlots.GetAvailableSlot();
+                    currentNpc.MoveItem(slot.transform);
+                    slot.FillSlot();
                 }
             }
             // NpcController.instance.npcCharactersOnRoad.First().MoveItemBack();
