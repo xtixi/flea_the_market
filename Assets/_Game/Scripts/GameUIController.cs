@@ -68,7 +68,7 @@ public class GameUIController : MonoBehaviour
         money.text = $"${GameController.instance.inventory.money}";
     }
 
-    private void UpdateDate()
+    internal void UpdateDate()
     {
         dateD.text = GameController.instance.inventory.day.ToString();
         dateW.text = GameController.instance.inventory.week.ToString();
@@ -379,6 +379,9 @@ public class GameUIController : MonoBehaviour
         InitCurrentMoney();
         await Task.Delay(500);
         CloseTopLeftPanel();
-        NpcController.instance.npcCharactersOnRoad.First().Resume();
+        if (NpcController.instance.npcCharactersOnRoad.Any())
+        {
+            NpcController.instance.npcCharactersOnRoad.First().Resume();
+        }
     }
 }

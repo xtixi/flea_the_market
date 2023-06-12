@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using DG.Tweening;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
@@ -59,10 +61,28 @@ namespace _Game.Scripts
             
         }
 
-        public async void EndDay()
+        [SerializeField] private List<Light> lights;
+        
+        [Button]
+        public void EndDay()
         {
-            
+            DOVirtual.Color(RenderSettings.ambientSkyColor ,Color.black, 7f,SetColor).OnComplete(SetLightsOff);
         }
+
+        private void SetColor(Color value)
+        {
+            RenderSettings.ambientSkyColor = value;
+        }
+
+        private async void SetLightsOff()
+        {
+            for (int i = 0; i < lights.Count; i++)
+            {
+                lights[i].enabled = false;
+                await Task.Delay(1000);
+            }
+        }
+
     }
 
     [Serializable]
